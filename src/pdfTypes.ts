@@ -1,0 +1,126 @@
+export type PdfMode = "single" | "spread" | "scroll";
+export type PdfPosition = {
+  page: number;
+  x?: number;
+  y?: number;
+  view: Pick<PdfSettings, "mode" | "fit" | "scale" | "rotation" | "translationView">;
+};
+export type PdfSettings = {
+  mode: PdfMode;
+  fit: "manual" | "width" | "page";
+  scale: number;
+  rotation: number;
+  brightness: number;
+  theme: "paper" | "dark";
+  voice: string;
+  rate: number;
+  translationView?: "original" | "parallel" | "translated";
+  formScripts?: boolean;
+};
+export type PdfAnnotation = {
+  id: string;
+  subtype: string;
+  rect: number[];
+  dest?: unknown;
+  url?: string;
+  action?: string;
+  titleObj?: { str?: string };
+  contentsObj?: { str?: string };
+  fieldName?: string;
+  fieldValue?: string | string[] | boolean;
+  fieldType?: string;
+  alternativeText?: string;
+  readOnly?: boolean;
+  required?: boolean;
+  maxLen?: number;
+  multiLine?: boolean;
+  password?: boolean;
+  checkBox?: boolean;
+  radioButton?: boolean;
+  pushButton?: boolean;
+  exportValue?: string;
+  buttonValue?: string;
+  combo?: boolean;
+  multiSelect?: boolean;
+  options?: { exportValue: string; displayValue: string }[];
+  creationDate?: string;
+  modificationDate?: string;
+  file?: PdfAttachment;
+};
+export type PdfAttachment = {
+  filename: string;
+  content: Uint8Array;
+  description?: string;
+};
+export type PdfOcrRecord = {
+  version: 1;
+  page: number;
+  text: string;
+  language: string;
+  created: number;
+  words: { text: string; rect: [number, number, number, number] }[];
+};
+export type PdfFormValue = string | string[];
+export type PdfFormRecord = {
+  version: 1;
+  bookId: string;
+  values: Record<string, PdfFormValue>;
+  updated: number;
+  formatted?: Record<string, string>;
+};
+export type PdfFieldObject = {
+  id: string;
+  name?: string;
+  type: string;
+  editable?: boolean;
+  password?: boolean;
+  exportValues?: string;
+  page?: number;
+  signature?: PdfSignature | null;
+  actions?: Record<string, string[]> | null;
+  value?: string | string[] | boolean | null;
+};
+export type PdfSignature = {
+  present: boolean;
+  ranges?: number[];
+  cms?: string | null;
+  subfilter?: string;
+  name?: string;
+  reason?: string;
+  location?: string;
+  date?: string;
+  error?: string;
+};
+export type PdfSignatureResult = {
+  cryptoValid: boolean;
+  cryptoError?: string;
+  coversCurrent: boolean;
+  chainTrusted?: boolean;
+  chainError?: string;
+  policyError?: string;
+  subject?: string;
+  issuer?: string;
+  notBefore?: number;
+  notAfter?: number;
+  certificateDer?: string;
+  certificateSha256?: string;
+  certificateSerial?: string;
+  revocation?: "revoked" | "clear_cached" | "unknown";
+  signedBytes: number;
+  fileBytes: number;
+  onlineChecked: false;
+};
+export type PdfNote = {
+  id: string;
+  page: number;
+  text: string;
+  note: string;
+  color: string;
+  rects: [number, number, number, number][];
+  created: number;
+};
+export type PdfSelection = {
+  page: number;
+  text: string;
+  rects: PdfNote["rects"];
+};

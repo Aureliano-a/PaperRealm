@@ -1,0 +1,3 @@
+0: Copyright 2022-2025 Tony Huang (https://github.com/tonyhuan/GuanKiapTsingKhai)
+1: GuanKiapTsingKhai-T
+2: Regular

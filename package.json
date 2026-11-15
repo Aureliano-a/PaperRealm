@@ -1,0 +1,44 @@
+{
+  "name": "paperrealm",
+  "version": "1.46.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/prepare-pdf-resources.cjs && vite --host 127.0.0.1",
+    "build": "node scripts/prepare-pdf-resources.cjs && tsc -b && vite build",
+    "test": "vitest run tests/core.test.ts",
+    "test:e2e": "playwright test",
+    "tauri": "tauri",
+    "desktop": "tauri dev",
+    "bundle": "tauri build --bundles nsis"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/plugin-dialog": "^2.4.0",
+    "@tauri-apps/plugin-fs": "^2.4.0",
+    "epubjs": "0.3.93",
+    "idb": "^8.0.3",
+    "lucide-react": "^0.468.0",
+    "motion": "^12.23.0",
+    "opencc-js": "1.4.0",
+    "pdfjs-dist": "4.10.38",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.180.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@tauri-apps/cli": "^2.9.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "fake-indexeddb": "^6.2.0",
+    "prettier": "^3.9.10",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.4"
+  }
+}

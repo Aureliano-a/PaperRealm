@@ -1,0 +1,2684 @@
+@font-face {
+  font-family: "PaperRealm QingKai";
+  src: url("/fonts/PaperRealmQingKai.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+@font-face {
+  font-family: "PaperRealm QingKai Elegant";
+  src: url("/fonts/PaperRealmQingKaiElegant.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+:root {
+  font-family: "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: #3e4339;
+  background: #f2f0e9;
+  font-synthesis: weight;
+  --bg: #f2f0e9;
+  --surface: #faf9f5;
+  --ink: #3e4339;
+  --muted: #939387;
+  --line: #dedfd5;
+  --green: #435b4a;
+  --gold: #b8a070;
+  --radius: 12px;
+  --shadow: 0 15px 35px #3435240d;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+html[dir="rtl"] { font-family: "PaperRealm NotoNaskhArabic", "Segoe UI", sans-serif; }
+html[dir="rtl"] input, html[dir="rtl"] textarea { unicode-bidi: plaintext; }
+.sidebar nav button, .reader-panel button, .settings-grid button { white-space: normal; overflow-wrap:anywhere; }
+html[dir="rtl"] .nav-count { margin-left:0; margin-right:auto; }
+html[dir="rtl"] nav button.active { box-shadow:inset -3px 0 #c6b78b; }
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 7px;
+  padding: 9px 12px;
+  transition:
+    background 0.18s,
+    transform 0.18s;
+  white-space: nowrap;
+}
+button:hover {
+  background: #3f514a0b;
+}
+button:active {
+  transform: translateY(1px);
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #b69a60;
+  outline-offset: 2px;
+}
+input,
+select,
+textarea {
+  border: 1px solid var(--line);
+  background: #fafaf5;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 7px;
+  max-width: 100%;
+  min-width: 0;
+}
+select {
+  cursor: pointer;
+}
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+input[type="range"] {
+  padding: 0;
+  border: 0;
+  accent-color: #647963;
+  cursor: pointer;
+  height: 14px;
+}
+input[type="color"] {
+  height: 34px;
+  width: 54px;
+  padding: 3px;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+h1 {
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+h2 {
+  font-size: 21px;
+}
+p {
+  line-height: 1.85;
+}
+small {
+  font-size: 11px;
+}
+svg {
+  flex-shrink: 0;
+}
+b {
+  font-weight: 500;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.primary {
+  background: var(--green);
+  color: #f6f4e8;
+  border: 1px solid #3d5343;
+  padding: 11px 18px;
+  box-shadow: 0 4px 10px #30443512;
+}
+.primary:hover {
+  background: #344b3c;
+}
+.danger {
+  background: #8d4b3e;
+  color: white;
+}
+.hint,
+.muted {
+  color: #99998b;
+  font-size: 12px;
+}
+.hint {
+  line-height: 1.9;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2.8px;
+  color: #929988;
+  line-height: 1.6;
+}
+.titlebar {
+  height: 37px;
+  display: flex;
+  align-items: center;
+  background: #242822;
+  color: #d2d3c5;
+  font-size: 11px;
+  position: relative;
+  z-index: 100;
+  user-select: none;
+}
+.title-drag {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding-left: 22px;
+}
+.title-drag > * {
+  pointer-events: none;
+}
+.titlebar i {
+  font-style: normal;
+  margin-left: 8px;
+  opacity: 0.6;
+}
+.title-tag {
+  margin-left: 16px;
+  color: #7e8679;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.window-buttons {
+  display: flex;
+  height: 100%;
+}
+.window-buttons button {
+  width: 44px;
+  border-radius: 0;
+}
+.window-buttons button:hover {
+  background: #ffffff12;
+}
+.window-buttons button:last-child:hover {
+  background: #b74335;
+  color: white;
+}
+.app-body {
+  display: flex;
+  height: calc(100vh - 37px);
+}
+.sidebar {
+  background: linear-gradient(145deg, #2e352d, #242b25);
+  color: #b4b9a8;
+  width: 228px;
+  flex-shrink: 0;
+  padding: 34px 19px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 2px 17px 45px;
+  color: #e2decb;
+  font-family: "PaperRealm QingKai Elegant", serif;
+  font-size: 30px;
+  letter-spacing: 6px;
+}
+.brand span {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-top: 3px;
+}
+.brand-icon {
+  height: 43px;
+  width: 40px;
+  display: grid;
+  place-items: center;
+  color: #cbb88a;
+  border: 1px solid #a69c704a;
+  border-radius: 8px;
+}
+.sidebar-label {
+  font-size: 10px;
+  color: #788273;
+  letter-spacing: 2px;
+  margin: 0 17px 16px;
+}
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+nav button {
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 13px 15px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #9ca792;
+}
+nav button.active {
+  background: #dce2ba12;
+  color: #e0e2ce;
+  box-shadow: inset 3px 0 #c6b78b;
+}
+nav button:hover {
+  background: #ffffff09;
+  color: #e3e4d6;
+}
+.nav-count {
+  margin-left: auto;
+  font-size: 10px;
+  color: #9ca88f;
+}
+.sidebar-bottom {
+  margin-top: auto;
+}
+.daily-quote {
+  font-family: "PaperRealm QingKai", serif;
+  color: #939c83;
+  font-size: 18px;
+  line-height: 1.9;
+  margin: 28px 20px;
+}
+.offline {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  margin: 24px 15px;
+  color: #7c8977;
+}
+.offline i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a1ad81;
+}
+.profile {
+  border-top: 1px solid #ffffff0a;
+  padding: 20px 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.profile > div {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #d0c6a11a;
+  color: #d9cdb0;
+  display: grid;
+  place-items: center;
+  font-family: serif;
+}
+.profile small {
+  display: block;
+  font-size: 8px;
+  margin-top: 5px;
+  color: #75816e;
+}
+.main {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  padding: 35px 44px 24px;
+  background:
+    radial-gradient(ellipse at 95% 0, #e7e9dc77, transparent 50%), var(--bg);
+}
+.main > div {
+  max-width: 1660px;
+  margin: auto;
+}
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 20px;
+}
+.page-heading h1 {
+  margin: 8px 0 10px;
+}
+.page-heading h1 span {
+  font:
+    16px Georgia,
+    serif;
+  color: #a3aa98;
+  margin-left: 15px;
+  letter-spacing: 0;
+}
+.page-heading p {
+  font-size: 12px;
+  color: #999b8e;
+  letter-spacing: 1px;
+}
+.page-heading select {
+  font-size: 11px;
+  background: transparent;
+  border-color: transparent;
+}
+.library-hero {
+  height: 245px;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #dce0cf, #e7e5d4 55%, #d7dbc9);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #d5dac9;
+  display: flex;
+  padding: 33px 40px;
+}
+.library-hero:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    125deg,
+    transparent 0 70px,
+    #f8f6e534 70px 110px,
+    transparent 110px 180px
+  );
+  pointer-events: none;
+}
+.hero-copy {
+  z-index: 1;
+}
+.hero-copy .eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #7e886e;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.gold-dot {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: #a99562;
+}
+.hero-copy h2 {
+  font-family: "PaperRealm QingKai Elegant", serif;
+  font-size: 29px;
+  margin: 17px 0 13px;
+  color: #4b5b43;
+}
+.hero-copy p {
+  font-size: 11px;
+  color: #8d957e;
+  line-height: 2;
+}
+.hero-button {
+  background: #f2f2e4a6;
+  border: 1px solid #94a17a40;
+  margin-top: 17px;
+  font-size: 11px;
+  padding: 9px 14px;
+}
+.hero-art {
+  position: absolute;
+  right: 4%;
+  top: 6px;
+  width: 36%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-art > .book-cover {
+  width: 124px;
+  height: 173px;
+  transform: rotate(12deg) perspective(500px) rotateY(-18deg);
+  box-shadow: 18px 17px 26px #46503325;
+  z-index: 2;
+}
+.hero-art .book-cover h3 {
+  font-size: 22px;
+}
+.hero-art .book-cover .cover-edition {
+  font-size: 6px;
+}
+.hero-art .book-cover p {
+  font-size: 8px;
+}
+.hero-art .cover-seal {
+  display: none;
+}
+.hero-art .cover-imprint {
+  font-size: 6px;
+}
+.hero-orbit {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border: 1px solid #6f81551f;
+  border-radius: 50%;
+  left: 10%;
+  top: -15px;
+}
+.hero-orbit:after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid #6f815515;
+  border-radius: 50%;
+}
+.hero-caption {
+  position: absolute;
+  bottom: 18px;
+  right: 0;
+  font: 7px Georgia;
+  letter-spacing: 2px;
+  color: #909c7c;
+}
+.abstract-book {
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    #3d4d36 4%,
+    #7c8966 6%,
+    #566747 9%,
+    #617452
+  );
+  width: 126px;
+  height: 172px;
+  border-radius: 3px;
+  box-shadow: 12px 12px 20px #43522e30;
+  transform: rotate(12deg);
+  border-right: 5px double #c1c4aa;
+  color: #dacb9d;
+  text-align: center;
+  padding-top: 43px;
+}
+.abstract-book span {
+  font: 32px "PaperRealm QingKai Elegant";
+  writing-mode: vertical-rl;
+  letter-spacing: 8px;
+}
+.abstract-book small {
+  display: block;
+  font-size: 8px;
+  margin-top: 12px;
+  letter-spacing: 2px;
+}
+.plant {
+  position: absolute;
+  right: 4%;
+  bottom: 22%;
+  height: 120px;
+  border-left: 2px solid #65794855;
+  transform: rotate(34deg);
+  z-index: 1;
+}
+.plant i {
+  position: absolute;
+  background: linear-gradient(130deg, #71844c, #3d5e354a);
+  width: 40px;
+  height: 16px;
+  border-radius: 0 90%;
+  left: 0;
+  top: 20px;
+  transform: rotate(-20deg);
+}
+.plant i:nth-child(2) {
+  left: -40px;
+  top: 40px;
+  transform: rotate(20deg);
+}
+.plant i:nth-child(3) {
+  top: 60px;
+}
+.plant i:nth-child(4) {
+  left: -40px;
+  top: 80px;
+}
+.plant i:nth-child(5) {
+  top: 100px;
+}
+.library-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  margin-top: 30px;
+}
+.tabs {
+  display: flex;
+  gap: 23px;
+}
+.tabs button {
+  position: relative;
+  font-size: 12px;
+  padding: 0 0 15px;
+  border-radius: 0;
+  color: #8d9384;
+}
+.tabs .selected {
+  color: #495c43;
+}
+.tabs .selected:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  background: #6b805c;
+}
+.tabs span {
+  font-size: 9px;
+  background: #e1e5d8;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.view-switch {
+  display: flex;
+  gap: 2px;
+  padding-bottom: 10px;
+}
+.view-switch button {
+  padding: 6px;
+  color: #a2a896;
+}
+.view-switch .active {
+  background: #e1e5d8;
+  color: #5c6f4e;
+}
+.collection-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 19px 0 28px;
+  font-size: 11px;
+  color: #929788;
+  gap: 15px;
+}
+.collection-tools > .row {
+  gap: 12px;
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #adb19f;
+}
+.search-field input {
+  background: none;
+  padding: 6px 0;
+  width: 178px;
+  border: 0;
+  font-size: 11px;
+}
+.collection-tools select {
+  font-size: 11px;
+  border: 0;
+  background: transparent;
+  padding: 5px;
+}
+.collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+  column-gap: 30px;
+  row-gap: 28px;
+  padding: 0 8px;
+}
+.book-card {
+  min-width: 0;
+  position: relative;
+}
+.book-display {
+  height: 225px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.book-cover {
+  --cover: #355449;
+  --foil: #e1c68e;
+  width: 155px;
+  height: 211px;
+  background-color: var(--cover);
+  border-radius: 3px 6px 6px 2px;
+  position: relative;
+  color: var(--foil);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:
+    inset 5px 0 8px #0003,
+    inset -1px 0 2px #fff4,
+    8px 7px 16px #2d35272b;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform 0.35s;
+  flex-shrink: 0;
+}
+.book-pdf-cover { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#eee8db; border-radius:inherit; }
+.book-cover:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0003, #fff1 4%, #0004 6%, transparent 9%);
+  border-radius: inherit;
+  z-index: 3;
+  pointer-events: none;
+}
+.book-cover.cloth:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, #fff1 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, #0001 0 1px, transparent 1px 3px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+.book-cover.leather {
+  background-image: repeating-radial-gradient(
+    ellipse at 40% 30%,
+    #ffffff0a 0 1px,
+    transparent 1px 3px
+  );
+}
+.book-cover:hover {
+  transform: translateY(-5px) rotate(-1deg);
+}
+.cover-border {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid color-mix(in srgb, var(--foil) 30%, transparent);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.cover-edition {
+  font-size: 7px;
+  letter-spacing: 3px;
+  margin-top: 27px;
+  opacity: 0.65;
+}
+.book-cover h3 {
+  font:
+    26px "PaperRealm QingKai Elegant",
+    serif;
+  text-align: center;
+  line-height: 1.5;
+  margin-top: 19px;
+  max-width: 82%;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 115px;
+}
+.book-cover p {
+  font-size: 8px;
+  letter-spacing: 2px;
+  margin-top: auto;
+  margin-bottom: 38px;
+  z-index: 1;
+  opacity: 0.7;
+}
+.cover-imprint {
+  position: absolute;
+  bottom: 20px;
+  font: 6px Georgia;
+  letter-spacing: 2px;
+  opacity: 0.65;
+}
+.cover-seal {
+  position: absolute;
+  bottom: 40px;
+  right: 25px;
+  border: 1px solid var(--foil);
+  font: 10px serif;
+  padding: 1px;
+  opacity: 0.5;
+}
+.book-pages {
+  position: absolute;
+  left: 99%;
+  top: 5px;
+  bottom: 3px;
+  width: calc(var(--thickness) * 0.35);
+  background: repeating-linear-gradient(0deg, #c9c5ad 0 1px, #eee6cb 1px 3px);
+  transform: skewY(-8deg);
+  transform-origin: left;
+  border-radius: 0 3px 3px 0;
+  z-index: -1;
+  box-shadow: 2px 2px 3px #0002;
+}
+.vertical h3 {
+  writing-mode: vertical-rl;
+  font-size: 24px;
+  max-height: 60%;
+  margin-top: 13px;
+  letter-spacing: 4px;
+}
+.vertical .cover-edition {
+  margin-top: 22px;
+}
+.cover-ornament {
+  position: absolute;
+  inset: 12px;
+  overflow: hidden;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.arches .cover-ornament {
+  background: repeating-radial-gradient(
+    ellipse at 50% 98%,
+    transparent 0 12px,
+    var(--foil) 13px 14px,
+    transparent 15px 27px
+  );
+  mask-image: linear-gradient(transparent 15%, #000 70%);
+}
+.botanical .cover-ornament:before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 45%;
+  border-left: 1px solid var(--foil);
+  border-radius: 50%;
+  bottom: 15%;
+  left: 20%;
+  transform: rotate(30deg);
+  background: repeating-radial-gradient(
+    ellipse at 20% 70%,
+    transparent 0 7px,
+    var(--foil) 8px 9px,
+    transparent 10px 15px
+  );
+  mask-image: linear-gradient(transparent, #000);
+}
+.stars .cover-ornament {
+  background-image: radial-gradient(var(--foil) 1px, transparent 1px);
+  background-size: 22px 29px;
+}
+.large.book-cover {
+  width: 240px;
+  height: 330px;
+}
+.large.book-cover h3 {
+  font-size: 40px;
+  margin-top: 40px;
+}
+.large.book-cover .cover-edition {
+  font-size: 9px;
+  margin-top: 37px;
+}
+.large.book-cover p {
+  font-size: 11px;
+  margin-bottom: 65px;
+}
+.large.book-cover .cover-imprint {
+  bottom: 28px;
+  font-size: 8px;
+}
+.large .cover-border {
+  inset: 18px;
+}
+.large .cover-seal {
+  bottom: 64px;
+  right: 38px;
+  font-size: 13px;
+}
+.favorite {
+  position: absolute;
+  right: -4px;
+  top: 2px;
+  color: #a6ad97;
+  background: #f6f5ebc9;
+  opacity: 0;
+  padding: 7px;
+  border-radius: 50%;
+}
+.book-card:hover .favorite,
+.favorite.is-favorite {
+  opacity: 1;
+}
+.is-favorite {
+  color: #b49a6b;
+}
+.shelf .book-display:after {
+  content: "";
+  position: absolute;
+  left: -15px;
+  right: -15px;
+  height: 9px;
+  background: linear-gradient(#d4d1b8, #e8e4d0);
+  box-shadow: 0 6px 8px #6b60431c;
+  bottom: -2px;
+  z-index: 0;
+  border-radius: 2px;
+}
+.shelf .book-cover {
+  z-index: 1;
+}
+.book-info {
+  margin-top: 17px;
+}
+.book-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+.book-title h3 {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.book-title button {
+  padding: 3px;
+  color: #8d9582;
+}
+.book-info p {
+  font-size: 10px;
+  color: #979f8b;
+  margin-top: 5px;
+}
+.book-info p span {
+  opacity: 0.7;
+}
+.book-progress {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 13px;
+  color: #9ba38d;
+  font-size: 9px;
+}
+.book-progress > div {
+  height: 3px;
+  flex: 1;
+  border-radius: 4px;
+  background: #dde2d3;
+}
+.book-progress i {
+  height: 100%;
+  display: block;
+  background: #9da987;
+}
+.book-progress > span {
+  min-width: 28px;
+}
+.book-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  color: #8c9680;
+}
+.book-actions button {
+  font-size: 9px;
+  padding: 5px 4px;
+}
+.book-actions button:last-child {
+  margin-left: auto;
+}
+.collection.list {
+  display: flex;
+  flex-direction: column;
+}
+.list .book-card {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+  gap: 25px;
+}
+.list .book-display {
+  height: 100px;
+  width: 82px;
+}
+.list .book-cover {
+  width: 65px;
+  height: 90px;
+}
+.list .book-cover h3 {
+  font-size: 13px;
+  margin-top: 15px;
+}
+.list .book-cover p,
+.list .cover-imprint,
+.list .cover-seal,
+.list .cover-edition {
+  display: none;
+}
+.list .book-info {
+  flex: 1;
+  max-width: 780px;
+}
+.list .book-progress {
+  max-width: 400px;
+}
+.library-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+  padding-top: 16px;
+  font-size: 10px;
+  color: #a4ac97;
+}
+.library-foot button {
+  font-size: 10px;
+}
+.empty {
+  text-align: center;
+  padding: 52px 20px 65px;
+  color: #949c87;
+}
+.empty > svg {
+  color: #9ba68a;
+  margin-bottom: 20px;
+  stroke-width: 1;
+}
+.empty h2 {
+  font-family: "PaperRealm QingKai", serif;
+  font-size: 24px;
+  color: #6f7e60;
+}
+.empty p {
+  font-size: 11px;
+  margin: 14px;
+}
+.empty button {
+  font-size: 12px;
+  border: 1px solid #b9c0a9;
+  margin-top: 8px;
+}
+.panel {
+  padding: 27px;
+  background: #faf9f4;
+  border: 1px solid #e1e2d6;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.panel h2 {
+  font-size: 17px;
+  margin-bottom: 23px;
+}
+.panel > p {
+  font-size: 12px;
+  color: #89907c;
+  margin: 15px 0;
+}
+.panel button:not(.toggle) {
+  font-size: 12px;
+}
+.panel > select {
+  margin-bottom: 14px;
+}
+.settings-grid,
+.memory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 12px;
+  color: #7e8771;
+  margin: 14px 0;
+}
+.field input,
+.field select {
+  width: 100%;
+}
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid #dedfd34d;
+  font-size: 12px;
+}
+.toggle-row small {
+  display: block;
+  color: #a2a892;
+  margin-top: 6px;
+  font-size: 10px;
+  max-width: 330px;
+  line-height: 1.7;
+}
+.toggle {
+  border: 0;
+  padding: 3px;
+  width: 34px;
+  height: 20px;
+  background: #d5d9ce;
+  border-radius: 20px;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+.toggle i {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 3px #0002;
+  transition: transform 0.2s;
+}
+.toggle.on {
+  background: #728466;
+}
+.toggle.on i {
+  transform: translateX(14px);
+}
+.toggle:hover {
+  background: #a8b39d;
+}
+.slider-field {
+  display: block;
+  font-size: 12px;
+  color: #7c866e;
+  margin: 20px 0;
+}
+.slider-field span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+.slider-field b {
+  font-size: 11px;
+  color: #a2a88f;
+}
+.slider-field input {
+  width: 100%;
+}
+.font-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+}
+.font-controls {
+  padding: 25px;
+}
+.font-preview {
+  padding: 42px 50px;
+  min-height: 520px;
+  border-radius: 5px;
+  box-shadow:
+    0 8px 30px #50482a17,
+    inset 15px 0 25px #8679520b;
+  border: 1px solid #d2d3c34d;
+  transition: background 0.3s;
+}
+.font-preview h2 {
+  font-size: 1.3em;
+  text-align: center;
+  margin: 30px 0;
+}
+.font-preview p {
+  text-indent: 2em;
+  font-size: inherit;
+  line-height: inherit;
+}
+.font-preview small {
+  display: block;
+  margin-top: 25px;
+  opacity: 0.6;
+  font-size: 0.65em;
+}
+.font-layout .hint {
+  margin: 20px 0;
+}
+.theme-picker {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.theme-picker button {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  padding: 8px;
+  border: 1px solid transparent;
+}
+.theme-picker .selected {
+  border-color: #aab692;
+}
+.theme-picker i {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 20px "PaperRealm QingKai";
+  border: 1px solid #0001;
+  box-shadow: 0 3px 8px #0001;
+}
+.custom-colors {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 11px;
+  color: #949c84;
+}
+.custom-colors label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.studio-layout {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 30px;
+}
+.studio-preview {
+  min-height: 680px;
+  background: radial-gradient(ellipse at 50% 35%, #e7e4d4, #dedfd3);
+  border: 1px solid #d7dacb;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+.studio-preview > .book-cover {
+  margin: 70px 0 65px;
+  transform: perspective(1100px) rotateY(-22deg) rotateX(8deg);
+  box-shadow: 25px 22px 35px #3b433833;
+}
+.studio-preview > p {
+  text-align: center;
+  font-family: "PaperRealm QingKai", serif;
+  font-size: 23px;
+}
+.studio-preview small {
+  font-family: system-ui;
+  display: block;
+  font-size: 10px;
+  color: #919981;
+  margin-top: 10px;
+}
+.studio-controls {
+  display: flex;
+  flex-direction: column;
+}
+.studio-controls > button {
+  margin: 6px 0;
+}
+.studio-controls h2 {
+  margin: 18px 0 15px;
+}
+.color-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #869177;
+}
+.studio-controls .slider-field {
+  margin: 15px 0;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.stat {
+  padding: 23px;
+  background: #f9f8f2;
+  border: 1px solid #e0e2d5;
+  border-radius: 10px;
+}
+.stat > span {
+  color: #9ba28b;
+  font-size: 11px;
+}
+.stat > b {
+  display: block;
+  font: 35px Georgia;
+  color: #647252;
+  margin-top: 15px;
+}
+.stat small {
+  font: 10px "Microsoft YaHei";
+  margin-left: 10px;
+  color: #9aa18a;
+}
+.chart {
+  height: 170px;
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  justify-content: space-around;
+}
+.chart > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 9px;
+  flex: 1;
+}
+.chart i {
+  width: 30px;
+  background: linear-gradient(#a6b093, #768a6b);
+  border-radius: 4px 4px 0 0;
+  min-height: 3px;
+}
+.chart span {
+  font-size: 9px;
+  color: #9fa68f;
+}
+.chart small {
+  font-size: 10px;
+  color: #8a967b;
+}
+.capsule {
+  background: radial-gradient(ellipse at top right, #e0dfcc, #f5f3e9);
+}
+.capsule h2 {
+  font-family: "PaperRealm QingKai", serif;
+  font-size: 25px;
+  margin-top: 16px;
+}
+.capsule > select {
+  font-size: 11px;
+  max-width: 100%;
+}
+.capsule > button {
+  margin-top: 6px;
+}
+dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 17px;
+  font-size: 12px;
+}
+dt {
+  color: #9aa38a;
+}
+dd {
+  margin: 0;
+  color: #6f7e60;
+}
+.memory-quote {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+.memory-quote blockquote {
+  font: 18px/1.8 "PaperRealm QingKai";
+  margin: 0 0 15px;
+  cursor: pointer;
+}
+.memory-quote input {
+  font-size: 11px;
+  width: 100%;
+}
+.memory-quote .row {
+  margin-top: 10px;
+}
+.memory-quote button {
+  color: #9aa287 !important;
+  font-size: 10px !important;
+}
+.trail-form {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+}
+.trail-form input {
+  font-size: 11px;
+  flex: 1;
+}
+.trail-form select {
+  font-size: 11px;
+}
+.trail-record {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 15px 0;
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+}
+.trail-record > span {
+  background: #e4e9d9;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 10px;
+  color: #8c9b75;
+}
+.trail-record input {
+  flex: 1;
+  font-size: 11px;
+}
+.trail-hits {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  overflow: auto;
+  align-items: flex-start;
+}
+.trail-hits button {
+  white-space: normal;
+  text-align: left;
+}
+.story-trail > .row > input {
+  width: 100%;
+  font-size: 12px;
+}
+.about-logo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #778765;
+}
+.about-logo span {
+  font: 11px Georgia;
+  color: #a0a68d;
+}
+details {
+  font-size: 11px;
+  color: #9aa38b;
+  line-height: 1.9;
+}
+summary {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.desk-main {
+  padding: 0;
+  background: #d5d4c4;
+}
+.desk {
+  min-height: calc(100vh - 37px);
+  --scene-ink: #ecdfb9;
+  background: #b5b29d;
+  color: #eef0df;
+  position: relative;
+  overflow: hidden;
+  padding: 30px 36px;
+}
+.desk-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.desk-head .eyebrow {
+  color: #7d826c;
+}
+.desk-head h1 {
+  font-family: "PaperRealm QingKai", serif;
+  margin: 12px 0;
+  font-size: 32px;
+  color: #4b5b43;
+}
+.desk-head p {
+  font-size: 12px;
+  color: #838b73;
+}
+.desk-head select {
+  background: #f4f1e5aa;
+  border-color: #d0d2bd;
+  color: #637055;
+  max-width: 270px;
+  font-size: 12px;
+}
+.desk-stage {
+  height: 470px;
+  position: relative;
+  perspective: 1000px;
+  margin: 10px -36px 0;
+}
+.desk-table {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -35px;
+  height: 370px;
+  background:
+    repeating-linear-gradient(
+      1deg,
+      transparent 0 13px,
+      #5541220a 14px 15px,
+      transparent 16px 38px
+    ),
+    linear-gradient(100deg, #99856a, #bcab84, #a99977);
+  transform: rotateX(18deg);
+  box-shadow: 0 -12px 35px #4b483123;
+}
+.window-light {
+  position: absolute;
+  inset: -120px -50px 0;
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0 140px,
+    #ffedaf33 141px 210px,
+    transparent 211px 300px
+  );
+  mix-blend-mode: screen;
+  z-index: 1;
+  pointer-events: none;
+  animation: light-move 18s ease-in-out infinite alternate;
+}
+.desk-window {
+  position: absolute;
+  width: 320px;
+  height: 200px;
+  right: 70px;
+  top: -30px;
+  background: linear-gradient(130deg, #ced4bb, #d2cbb0);
+  border: 18px solid #6c6d5d33;
+  box-shadow: 0 0 70px #e8e5b877;
+  filter: blur(4px);
+}
+.desk-window:after {
+  content: "";
+  position: absolute;
+  left: 47%;
+  top: 0;
+  height: 100%;
+  width: 10px;
+  background: #7f806351;
+}
+.desk-book-area {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  z-index: 4;
+  text-align: center;
+}
+.desk-closed-book {
+  transform: perspective(1000px) rotateX(22deg) rotateZ(-9deg);
+  cursor: pointer;
+}
+.desk-closed-book .book-cover {
+  box-shadow: 20px 24px 32px #251c1945;
+}
+.desk-open-toggle {
+  margin-top: 22px;
+  background: #eee8d359;
+  color: #5c6249;
+  font-size: 11px;
+}
+.desk-open-book {
+  display: flex;
+  transform: rotateX(20deg) rotateZ(-4deg);
+  height: 285px;
+  width: 435px;
+  box-shadow: 20px 25px 30px #29261a44;
+  cursor: pointer;
+}
+.desk-open-book > div {
+  width: 50%;
+  padding: 24px;
+  background: #eee5cb;
+  color: #736b55;
+  font: 15px/1.9 "PaperRealm QingKai";
+  box-shadow: inset -12px 0 18px #554b2f18;
+  overflow: hidden;
+}
+.desk-open-book > div + div {
+  box-shadow: inset 12px 0 18px #554b2f25;
+}
+.desk-open-book span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 17px;
+}
+.desk-lamp {
+  position: absolute;
+  left: 13%;
+  top: 65px;
+  width: 70px;
+  height: 160px;
+  border-bottom: 12px solid #545744;
+  border-radius: 50%;
+  z-index: 3;
+}
+.desk-lamp:before {
+  content: "";
+  position: absolute;
+  height: 150px;
+  width: 6px;
+  background: #656a4f;
+  left: 33px;
+  transform: rotate(-8deg);
+}
+.desk-lamp i {
+  position: absolute;
+  left: 15px;
+  top: -10px;
+  width: 75px;
+  height: 35px;
+  border-radius: 70px 70px 10px 10px;
+  background: #5e674e;
+  transform: rotate(-10deg);
+  box-shadow: 0 25px 35px #f9de8866;
+}
+.tea-cup {
+  position: absolute;
+  right: 13%;
+  bottom: 100px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #7f6742 45%,
+    #dfdbc5 47%,
+    #e9e4d3 58%,
+    #bab9a3 60%,
+    #d1ceba 70%
+  );
+  box-shadow: 6px 13px 15px #3c3c2740;
+  z-index: 3;
+}
+.tea-cup:after {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 15px;
+  border: 6px solid #d0cdb4;
+  border-radius: 10px;
+  right: -20px;
+  top: 25px;
+}
+.desk-caption {
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  z-index: 2;
+  color: #ede8d6;
+  font: 22px "PaperRealm QingKai";
+  text-shadow: 0 2px 4px #0003;
+  max-width: 36%;
+}
+.desk-caption span {
+  display: block;
+  font: 10px "Microsoft YaHei";
+  margin-top: 10px;
+  letter-spacing: 2px;
+  opacity: 0.75;
+}
+.desk-dock {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 20px 25px;
+  background: #f0eddfdf;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px #454d3026;
+  color: #687856;
+  backdrop-filter: blur(10px);
+}
+.desk-dock > div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.desk-dock span,
+.desk-dock label {
+  font-size: 9px;
+  color: #959d85;
+}
+.desk-dock b {
+  display: block;
+  font: 19px Georgia;
+  margin-top: 7px;
+  color: #6b7b58;
+}
+.desk-dock select {
+  display: block;
+  margin-top: 6px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #6b7b58;
+  font-size: 11px;
+  max-width: 175px;
+}
+.desk-dock > button {
+  margin-left: auto;
+  padding: 6px;
+}
+.desk-dock > button + button {
+  margin-left: 0;
+}
+.scene-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 2;
+}
+.scene-options button {
+  background: #f1efdc33;
+  color: #ecebd9;
+  border: 1px solid #f2eeda44;
+  justify-content: flex-start;
+  padding: 15px;
+  text-align: left;
+  font-size: 11px;
+}
+.scene-options .selected {
+  background: #f1efdc9c;
+  border-color: #e0ddc7;
+  color: #606e50;
+}
+.scene-options small {
+  display: block;
+  font-size: 8px;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+.scene-options button > svg:last-child {
+  margin-left: auto;
+}
+.desk-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #7a856b;
+  margin-top: 5px;
+}
+.desk-controls .toggle-row {
+  gap: 15px;
+  border: none;
+  font-size: 10px;
+}
+.scene-rain.desk {
+  background: #2c3738;
+}
+.scene-rain .desk-table {
+  background:
+    repeating-linear-gradient(0deg, #0000 0 28px, #0002 29px 30px),
+    linear-gradient(100deg, #32302b, #534738, #36342d);
+}
+.scene-rain .desk-window {
+  background:
+    radial-gradient(circle at 20% 70%, #bd9d51 0 2px, transparent 4px),
+    radial-gradient(circle at 80% 50%, #b8a363 0 3px, transparent 5px),
+    linear-gradient(#1b2e39, #3a4848);
+  box-shadow: 0 0 50px #20373d;
+}
+.scene-rain .window-light {
+  opacity: 0.2;
+}
+.scene-rain .desk-lamp i {
+  background: #8d825e;
+  box-shadow: 0 40px 70px 40px #ffd66a44;
+}
+.scene-rain .desk-head h1,
+.scene-ink .desk-head h1,
+.scene-classic .desk-head h1 {
+  color: #d2d6bf;
+}
+.rain-lines {
+  display: none;
+  position: absolute;
+  right: 65px;
+  top: -25px;
+  width: 320px;
+  height: 200px;
+  background: repeating-linear-gradient(
+    102deg,
+    transparent 0 28px,
+    #cee3e522 29px 30px,
+    transparent 31px 65px
+  );
+  animation: rain 2.5s linear infinite;
+  z-index: 1;
+}
+.scene-rain .rain-lines {
+  display: block;
+}
+.scene-ink.desk {
+  background: #292d2c;
+}
+.scene-ink .desk-table {
+  background: linear-gradient(110deg, #343836, #51534b, #303532);
+}
+.scene-ink .desk-window,
+.scene-ink .window-light,
+.scene-ink .tea-cup {
+  display: none;
+}
+.scene-classic.desk {
+  background: repeating-linear-gradient(
+    90deg,
+    #504b3b 0 27px,
+    #4b4738 28px 46px,
+    #5d503b 47px 70px
+  );
+}
+.scene-classic .desk-table {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 10px, #2e1b1211 11px 13px),
+    linear-gradient(100deg, #5f4831, #92734d, #695139);
+}
+.scene-classic .desk-window {
+  background: #b8a882;
+  filter: blur(12px);
+  opacity: 0.7;
+}
+.ambience-static .window-light,
+.ambience-static .rain-lines,
+.low-power .window-light,
+.low-power .rain-lines {
+  animation: none;
+}
+.ambience-off .desk-window,
+.ambience-off .window-light,
+.ambience-off .desk-table,
+.ambience-off .rain-lines,
+.ambience-off .tea-cup,
+.ambience-off .desk-lamp {
+  display: none;
+}
+.ambience-off.desk {
+  background: #d9ddcf;
+}
+@keyframes rain {
+  to {
+    background-position: -20px 80px;
+  }
+}
+@keyframes light-move {
+  to {
+    transform: translateX(35px);
+    opacity: 0.55;
+  }
+}
+.reader {
+  height: calc(100vh - 37px);
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at 50% 30%, #b7b5a0, #858976);
+  position: relative;
+  overflow: hidden;
+  color: #e6e7d5;
+}
+.reader.scene-rain {
+  background: radial-gradient(ellipse at 20% 50%, #615742, #273638);
+}
+.reader.scene-ink {
+  background: #252d2a;
+}
+.reader.scene-classic {
+  background: radial-gradient(ellipse at 50% 30%, #8b7a5c, #4a493b);
+}
+.reader-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 30px;
+  height: 77px;
+  flex-shrink: 0;
+  color: #ecebdc;
+}
+.reader-top > div:not(.row) {
+  text-align: center;
+}
+.reader-top b {
+  display: block;
+  font: 20px "PaperRealm QingKai";
+  max-width: 55vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.reader-top span {
+  display: block;
+  font-size: 9px;
+  opacity: 0.6;
+  margin-top: 5px;
+}
+.reader-top button {
+  font-size: 11px;
+}
+.reader-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+.reader-panel {
+  width: 290px;
+  flex-shrink: 0;
+  margin: 0 0 20px 20px;
+  border-radius: 10px;
+  background: #efeee4ef;
+  color: #67705a;
+  overflow: auto;
+  padding: 20px;
+  font-size: 12px;
+}
+.reader-panel.closed {
+  display: none;
+}
+.reader-panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d0d7c5;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+.reader-panel > button {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 12px;
+  white-space: normal;
+  width: 100%;
+  padding: 12px 5px;
+  line-height: 1.6;
+}
+.reader-panel > button > span {
+  font: 10px Georgia;
+  color: #a7b297;
+}
+.reader-panel button.current {
+  background: #dce2d1;
+  color: #526544;
+}
+.reader-panel input {
+  width: 100%;
+  font-size: 11px;
+}
+.reader-panel p {
+  font-size: 11px;
+  color: #8c977d;
+}
+.mark-item {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #d0d7c5;
+}
+.mark-item > button:first-child {
+  white-space: normal;
+  text-align: left;
+  display: block;
+  line-height: 1.8;
+  font-size: 12px;
+}
+.mark-item small {
+  display: block;
+  color: #a1ab92;
+  margin-top: 6px;
+}
+.reading-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  padding: 8px 28px 20px;
+  overflow: hidden;
+}
+.spread {
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  filter: drop-shadow(0 20px 24px #25271d35);
+}
+.paper {
+  position: relative;
+  border-radius: 4px 3px 2px 4px;
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: text;
+  background-image: radial-gradient(#7b795b09 0.7px, transparent 0.7px);
+  background-size: 5px 5px;
+}
+.paper + .paper {
+  border-radius: 3px 4px 4px 2px;
+}
+.running-title {
+  position: absolute;
+  top: 19px;
+  left: 9%;
+  font: 9px "Microsoft YaHei";
+  letter-spacing: 1px;
+  opacity: 0.4;
+  max-width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.page-number {
+  position: absolute;
+  bottom: 16px;
+  left: 48%;
+  font: 10px Georgia;
+  opacity: 0.4;
+  letter-spacing: 2px;
+}
+.chapter-line {
+  opacity: 0.85;
+}
+.spine {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #5c503619 40%,
+    #3c342d26 50%,
+    #ebdfbb22 52%,
+    transparent
+  );
+  z-index: 2;
+}
+.paper:only-of-type ~ .spine {
+  display: none;
+}
+.dogear {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  clip-path: polygon(0 0, 100% 100%, 100% 0);
+  background: #99895a12;
+  border-radius: 0;
+  z-index: 5;
+}
+.dogear:hover,
+.dogear.marked {
+  background: #b6a171;
+  box-shadow: -2px 2px 4px #0004;
+}
+.text-line::selection {
+  background: #b9c29977;
+}
+.end-paper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "PaperRealm QingKai";
+}
+.end-paper h2 {
+  font-size: 22px;
+}
+.end-paper p {
+  opacity: 0.5;
+}
+.end-paper button {
+  font-size: 13px;
+}
+.curl-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.curl-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.curl-canvas canvas {
+  display: block;
+}
+.curl-handle {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  width: 32px;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+}
+.curl-handle:active {
+  cursor: grabbing;
+}
+.curl-handle.left {
+  left: 0;
+}
+.curl-handle.right {
+  right: 0;
+}
+.reader-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 62px;
+  flex-shrink: 0;
+  padding: 8px 33px;
+  color: #e1e5d0;
+}
+.reader-bottom button {
+  font-size: 11px;
+}
+.reader-bottom select {
+  background: #ffffff0c;
+  border: 1px solid #ffffff18;
+  color: #e4e8d5;
+  font-size: 10px;
+  padding: 7px;
+}
+.reader-bottom option {
+  background: #354033;
+}
+.page-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font: 11px Georgia;
+  letter-spacing: 1px;
+}
+.read-progress {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 42px 14px;
+  color: #e1e5d0;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+.read-progress input {
+  width: 100%;
+  height: 3px;
+  accent-color: #b8c095;
+  background: transparent;
+}
+.focus-mode .reader-top,
+.focus-mode .reader-bottom,
+.focus-mode .read-progress {
+  visibility: hidden;
+}
+.exit-focus {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  font-size: 10px;
+  opacity: 0.5;
+}
+.exit-focus:hover {
+  opacity: 1;
+}
+.scroll-stage {
+  display: block;
+  overflow-y: auto;
+  scroll-behavior: auto;
+}
+.scroll-pages {
+  width: fit-content;
+  margin: 0 auto;
+}
+.scroll-pages .paper {
+  margin-bottom: 28px;
+}
+.scroll-pages .dogear {
+  display: none;
+}
+.gpu-notice {
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
+  background: #3339;
+  padding: 5px;
+}
+.ritual {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: radial-gradient(ellipse, #797f66f5, #293829fc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.ritual > .eyebrow {
+  color: #c4ccb3;
+  font-size: 12px;
+}
+.ritual-book {
+  width: 240px;
+  height: 340px;
+  box-shadow:
+    inset 8px 0 8px #0006,
+    12px 20px 35px #17241688;
+  border: 1px solid #afad7b55;
+  border-right: 8px double #d2c6a3;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #dbca9e;
+  padding: 50px 20px 20px;
+  cursor: pointer;
+  transform: perspective(1100px) rotateY(-15deg);
+  transition: transform 0.5s;
+}
+.ritual-book:hover {
+  transform: perspective(1100px) rotateY(-30deg);
+}
+.ritual-book h1 {
+  font: 33px/1.4 "PaperRealm QingKai";
+  text-align: center;
+  margin: 30px 0;
+}
+.ritual-book p {
+  font-size: 12px;
+}
+.ritual > button {
+  border: 1px solid #b8c09b33;
+  color: #d9dfc6;
+  font-size: 12px;
+}
+.modal-shade {
+  position: fixed;
+  inset: 37px 0 0;
+  background: #20261c80;
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.modal {
+  width: 440px;
+  max-height: 90vh;
+  overflow: auto;
+  background: #f6f5ed;
+  border: 1px solid #dfdfcf;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px #151c2555;
+  color: #5a6650;
+}
+.modal h2 {
+  font-family: "PaperRealm QingKai";
+  font-size: 26px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.modal p {
+  font-size: 12px;
+  color: #8b947c;
+}
+.modal .row {
+  justify-content: flex-end;
+  margin-top: 23px;
+}
+.modal blockquote {
+  margin: 15px 0;
+  font-family: "PaperRealm QingKai";
+  font-size: 20px;
+  line-height: 1.8;
+  max-height: 220px;
+  overflow: auto;
+}
+.modal textarea {
+  width: 100%;
+  font-size: 12px;
+}
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 400;
+  background: #344a39f5;
+  color: #e7e9d8;
+  border: 1px solid #c7c9ad33;
+  border-radius: 9px;
+  box-shadow: 0 10px 40px #0003;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12px;
+  max-width: 80vw;
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+.toast.error {
+  background: #785446;
+}
+.toast button {
+  padding: 0;
+}
+.drop-overlay {
+  position: fixed;
+  inset: 43px 7px 7px;
+  pointer-events: none;
+  background: #374d39ee;
+  color: #e2e4cb;
+  border: 2px dashed #b7c592;
+  border-radius: 15px;
+  z-index: 350;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.loading-overlay {
+  position: fixed;
+  inset: 37px 0 0;
+  display: grid;
+  place-items: center;
+  background: #e4e7d9;
+  z-index: 500;
+  color: #718461;
+}
+.loading {
+  font-family: "PaperRealm QingKai";
+  font-size: 23px;
+  color: #eceddf;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: #a5b09666;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+@media (min-width: 1800px) {
+  .main {
+    padding: 45px 70px;
+  }
+  .library-hero {
+    height: 290px;
+    padding: 45px 55px;
+  }
+  .hero-copy h2 {
+    font-size: 34px;
+  }
+  .hero-art > .book-cover {
+    width: 150px;
+    height: 207px;
+  }
+  .collection {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 35px;
+  }
+  .book-display {
+    height: 265px;
+  }
+  .book-display > .book-cover {
+    width: 175px;
+    height: 240px;
+  }
+  .desk-stage {
+    height: 550px;
+  }
+  .desk-book-area {
+    top: 90px;
+  }
+  .sidebar {
+    width: 245px;
+  }
+  .font-preview {
+    min-height: 600px;
+  }
+  .desk {
+    padding: 40px 55px;
+  }
+  .desk-stage {
+    margin-left: -55px;
+    margin-right: -55px;
+  }
+}
+@media (max-width: 1150px) {
+  .sidebar {
+    width: 190px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .brand {
+    font-size: 25px;
+    margin-left: 10px;
+  }
+  .brand-icon {
+    width: 32px;
+  }
+  .brand span {
+    font-size: 7px;
+  }
+  .sidebar nav button {
+    font-size: 11px;
+    gap: 9px;
+  }
+  .main {
+    padding: 28px 25px;
+  }
+  .tabs {
+    gap: 15px;
+  }
+  .hero-copy h2 {
+    font-size: 24px;
+  }
+  .hero-art {
+    right: 0;
+    width: 30%;
+  }
+  .hero-copy {
+    max-width: 70%;
+  }
+  .library-hero {
+    padding: 30px;
+  }
+  .page-heading h1 {
+    font-size: 26px;
+  }
+  .font-layout {
+    grid-template-columns: 240px 1fr;
+    gap: 18px;
+  }
+  .font-preview {
+    padding: 30px;
+  }
+  .theme-picker {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .studio-layout {
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+  }
+  .desk-dock {
+    gap: 14px;
+    padding: 15px;
+  }
+  .desk-dock label {
+    max-width: 130px;
+  }
+  .desk-dock select {
+    max-width: 120px;
+  }
+  .scene-options {
+    gap: 8px;
+  }
+  .scene-options button {
+    padding: 12px 8px;
+    font-size: 10px;
+  }
+  .scene-options small {
+    display: none;
+  }
+  .desk-stage {
+    height: 440px;
+  }
+  .desk-book-area {
+    top: 35px;
+  }
+  .trail-form {
+    flex-wrap: wrap;
+  }
+  .collection-tools .muted {
+    display: none;
+  }
+  .reader-top {
+    padding: 15px;
+  }
+  .reader-bottom {
+    padding: 8px 15px;
+  }
+  .reader-panel {
+    width: 250px;
+  }
+}
+@media (max-width: 850px) {
+  .sidebar {
+    width: 72px;
+    padding: 25px 10px;
+  }
+  .brand {
+    margin: 0 3px 35px;
+  }
+  .brand > div:last-child,
+  .sidebar-label,
+  .sidebar-bottom,
+  nav .nav-count {
+    display: none;
+  }
+  nav button {
+    font-size: 0 !important;
+    padding: 15px;
+    gap: 0;
+    justify-content: center;
+  }
+  nav button svg {
+    width: 22px;
+    height: 22px;
+  }
+  .main {
+    padding: 25px;
+  }
+  .page-heading {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .page-heading > .row {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 3px;
+  }
+  .page-heading h1 span {
+    display: none;
+  }
+  .page-heading .primary {
+    font-size: 11px;
+    padding: 9px 12px;
+  }
+  .hero-copy h2 {
+    font-size: 23px;
+  }
+  .hero-art {
+    opacity: 0.7;
+    right: -10px;
+  }
+  .tabs {
+    gap: 15px;
+  }
+  .tabs button {
+    font-size: 10px;
+  }
+  .library-toolbar .view-switch button {
+    padding: 4px;
+  }
+  .collection {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  .collection-tools {
+    flex-wrap: wrap;
+  }
+  .settings-grid,
+  .memory-grid {
+    grid-template-columns: 1fr;
+  }
+  .font-layout {
+    grid-template-columns: 220px 1fr;
+  }
+  .font-preview {
+    padding: 25px;
+    font-size: 18px !important;
+  }
+  .studio-layout {
+    grid-template-columns: 1fr 260px;
+  }
+  .large.book-cover {
+    width: 200px;
+    height: 280px;
+  }
+  .large.book-cover h3 {
+    font-size: 30px;
+  }
+  .studio-preview {
+    padding: 25px 10px;
+  }
+  .theme-picker {
+    gap: 4px;
+  }
+  .theme-picker button {
+    font-size: 9px;
+    padding: 5px;
+  }
+  .theme-picker i {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+  .desk {
+    padding: 24px;
+  }
+  .desk-head h1 {
+    font-size: 27px;
+  }
+  .desk-head select {
+    max-width: 190px;
+  }
+  .desk-dock {
+    flex-wrap: wrap;
+  }
+  .desk-dock label {
+    max-width: 120px;
+  }
+  .desk-stage {
+    height: 410px;
+  }
+  .tea-cup {
+    right: 8%;
+  }
+  .desk-lamp {
+    left: 8%;
+  }
+  .desk-caption {
+    font-size: 18px;
+    left: 30px;
+  }
+  .desk-open-book {
+    width: 360px;
+  }
+  .scene-options button {
+    gap: 7px;
+  }
+  .scene-options button > svg:last-child {
+    display: none;
+  }
+  .stat-grid {
+    gap: 10px;
+  }
+  .stat {
+    padding: 15px;
+  }
+  .stat > b {
+    font-size: 29px;
+  }
+  .reader-bottom .row {
+    gap: 3px;
+  }
+  .reader-bottom button {
+    padding: 7px;
+  }
+  .reader-bottom select {
+    padding: 5px;
+    font-size: 9px;
+  }
+  .page-nav {
+    gap: 5px;
+  }
+  .paper .text-line {
+    max-width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+.under-spread {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 0;
+  pointer-events: none;
+}
+.under-spread .paper {
+  opacity: 1 !important;
+}
+.curl-canvas {
+  top: -90px;
+  bottom: -90px;
+}
+.desk .window-light {
+  opacity: 0.35;
+}
+.desk.ambience-off .desk-head h1 {
+  color: #4b5b43;
+}
+.single-spread .spine {
+  display: none;
+}
+.reading-stage {
+  overflow: visible;
+}
+.scroll-stage {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

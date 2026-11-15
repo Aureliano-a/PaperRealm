@@ -1,0 +1,21 @@
+.document-reader { height:100vh; display:flex; flex-direction:column; background:#eee8db; color:#3e352c; }
+.document-reader header,.document-reader footer { display:flex; align-items:center; gap:12px; padding:8px 18px; background:#302b25; color:#ffdaa4; }
+.document-reader header strong { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.document-reader footer { justify-content:center; }
+.document-reader footer input { width:70px; text-align:center; }
+.document-epub-layout { display:flex; flex:1; min-height:0; }
+.document-epub { flex:1; min-width:0; height:100%; }
+.document-toc { width:260px; overflow:auto; padding:12px; }
+.document-toc button { width:100%; white-space:normal; justify-content:flex-start; }
+.document-pdf { flex:1; overflow:auto; text-align:center; padding:20px; }
+.document-pdf canvas { max-width:none; box-shadow:0 5px 30px #0003; }
+.document-error { padding:24px; }
+.document-bookmarks { position:absolute; z-index:20; top:54px; right:18px; max-height:65vh; overflow:auto; display:flex; flex-direction:column; padding:12px; background:#fffaf0; box-shadow:0 8px 30px #0004; }
+.document-reader header { flex-wrap:wrap; }
+
+.document-reader footer { flex-wrap:wrap; }
+
+.pdf-page-box { position:relative; display:inline-block; line-height:0; }
+.pdf-text-layer { position:absolute; inset:0; overflow:clip; line-height:1; text-align:initial; transform-origin:0 0; }
+.pdf-text-layer :is(span,br) { color:transparent; position:absolute; white-space:pre; cursor:text; transform-origin:0 0; }
+.pdf-text-layer span::selection { background:rgba(65,125,220,.38); }

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="850" viewBox="0 0 1280 850">
+    <defs><radialGradient id="paper"><stop offset=".38" stop-color="#ead09c"/><stop offset="1" stop-color="#7b4825"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".48" numOctaves="3" seed="26" stitchTiles="stitch"/></filter></defs>
+    <rect width="1280" height="850" fill="url(#paper)"/><rect width="1280" height="850" filter="url(#grain)" opacity=".16"/>
+    </svg>

@@ -1,0 +1,9 @@
+LXGW WenKai GB Screen web font
+
+The bundled WOFF2 is a web-font format conversion of the unmodified
+LXGWWenKaiGBScreen.ttf version 1.530 by LXGW. It is used by the embedded
+reader, and the original TTF is retained as a fallback. The font is licensed
+under the SIL Open Font License 1.1; see LXGWWenKaiGBScreen-OFL.txt for the
+copyright, reserved font names, and license terms.
+
+Source: https://github.com/lxgw/LxgwWenKai-Screen

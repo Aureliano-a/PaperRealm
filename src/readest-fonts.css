@@ -1,0 +1,16 @@
+@font-face { font-family: "PaperRealm readestBitter"; src: url("/fonts/readest/Bitter.ttf") format("truetype"); font-display: swap; font-weight: 100 900; }
+@font-face { font-family: "PaperRealm WenKaiScreen"; src: url("/fonts/readest/LXGWWenKaiGBScreen.woff2") format("woff2"), url("/fonts/readest/LXGWWenKaiGBScreen.ttf") format("truetype"); font-display: block; font-weight: 400; }
+@font-face { font-family: "PaperRealm readestFiraCode"; src: url("/fonts/readest/FiraCode.ttf") format("truetype"); font-display: swap; font-weight: 300 700; }
+@font-face { font-family: "PaperRealm readestLiterata"; src: url("/fonts/readest/Literata.ttf") format("truetype"); font-display: swap; font-weight: 200 900; }
+@font-face { font-family: "PaperRealm readestMerriweather"; src: url("/fonts/readest/Merriweather.ttf") format("truetype"); font-display: swap; font-weight: 300 900; }
+@font-face { font-family: "PaperRealm readestNotoSans"; src: url("/fonts/readest/NotoSans.ttf") format("truetype"); font-display: swap; font-weight: 100 900; }
+@font-face { font-family: "PaperRealm readestOpenSans"; src: url("/fonts/readest/OpenSans.ttf") format("truetype"); font-display: swap; font-weight: 300 800; }
+@font-face { font-family: "PaperRealm readestRoboto"; src: url("/fonts/readest/Roboto.ttf") format("truetype"); font-display: swap; font-weight: 100 900; }
+@font-face { font-family: "PaperRealm readestRobotoSlab"; src: url("/fonts/readest/RobotoSlab.ttf") format("truetype"); font-display: swap; font-weight: 100 900; }
+@font-face { font-family: "PaperRealm readestVollkorn"; src: url("/fonts/readest/Vollkorn.ttf") format("truetype"); font-display: swap; font-weight: 400 900; }
+@font-face { font-family: "PaperRealm readestPTSans"; src: url("/fonts/readest/PTSans.ttf") format("truetype"); font-display: swap; font-weight: 400; }
+@font-face { font-family: "PaperRealm readestPTSerif"; src: url("/fonts/readest/PTSerif.ttf") format("truetype"); font-display: swap; font-weight: 400; }
+@font-face { font-family: "PaperRealm readestPTMono"; src: url("/fonts/readest/PTMono.ttf") format("truetype"); font-display: swap; font-weight: 400; }
+@font-face { font-family: "PaperRealm readestNotoSC"; src: url("/fonts/readest/NotoSansSC.ttf") format("truetype"); font-display: swap; font-weight: 100 900; }
+@font-face { font-family: "PaperRealm readestNotoJP"; src: url("/fonts/readest/NotoSerifJP.ttf") format("truetype"); font-display: swap; font-weight: 200 900; }
+@font-face { font-family: "PaperRealm readestSourceHan"; src: url("/fonts/readest/SourceHanSerifSC.otf") format("opentype"); font-display: swap; font-weight: 400; }
